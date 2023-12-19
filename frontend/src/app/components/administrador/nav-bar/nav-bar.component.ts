@@ -29,7 +29,7 @@ export class NavBarComponent implements OnInit{
   }
 
   logOut() {
-    localStorage.removeItem('token');
+    this.userService.removeToken();
     this.modalRef?.hide()
     this.router.navigate(['/dashboard'])
   }

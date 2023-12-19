@@ -27,9 +27,17 @@ export class UserService{
     this.currentUser$.next(user);
   }
 
-  // getThisUserWithSignal() {
-  //   return this.currentUser();
-  // }
+  saveToken(token:any){
+    localStorage.setItem('token', token);
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
+  removeToken(){
+    localStorage.removeItem('token');
+  }
 
   getThisUserBehaviour(){
     return this.currentUser$.asObservable()
@@ -44,7 +52,7 @@ export class UserService{
   }
 
   updateUser(){
-    const token = localStorage.getItem('token');
+    const token = this.getToken();
     if(token){
       const headerToken = new HttpHeaders({'Authorization' : token})
       this.http.post<user>(`${this.myAppUrl}${this.myApiUrl}/user_token`,{headers:headerToken}).subscribe({

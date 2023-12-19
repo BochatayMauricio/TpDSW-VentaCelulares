@@ -54,7 +54,7 @@ export class LoginComponent {
       next: (res: any) => {
         const { tok, us } = res
         this.userService.setThisUser(us);
-        localStorage.setItem('token', tok);
+        this.userService.saveToken(tok);
         if (this.adminLogin) {
           this.router.navigate([`/admin`])
         } else {

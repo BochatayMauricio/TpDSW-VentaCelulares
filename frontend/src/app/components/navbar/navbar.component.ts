@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit /*,AfterViewChecked*/ {
   }
 
   ngOnInit(): void {
-    let token = localStorage.getItem('token');
+    let token = this.userService.getToken();
     this.userService.getThisUserBehaviour().subscribe(value => this.user = value);
     if (token) {
       this.login = true
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit /*,AfterViewChecked*/ {
   // }
 
   logOut() {
-    localStorage.removeItem('token');
+    this.userService.removeToken();
     this.cartService.clearCart();
     console.log(location.pathname)
     if (location.pathname == '/dashboard') {
