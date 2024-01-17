@@ -22,9 +22,9 @@ export class SignInComponent {
   loading: boolean = false;
 
   constructor(private toastr: ToastrService,
-    private _userService: UserService,
+    private userService: UserService,
     private router: Router,
-    private _errorService: ErrorService) {
+    private errorService: ErrorService) {
 
   }
 
@@ -52,14 +52,14 @@ export class SignInComponent {
     }
 
     this.loading = true;
-    this._userService.signIn(user).subscribe({
+    this.userService.signIn(user).subscribe({
       next: (v) => {
         this.loading = false;
         this.toastr.success(`Registrado Exitosamente`, 'Usuario Registrado');
         this.router.navigate(['/login']);
       },
       error: (e: HttpErrorResponse) => {
-        this._errorService.msjError(e);
+        this.errorService.msjError(e);
         this.loading = false;
       }
     })

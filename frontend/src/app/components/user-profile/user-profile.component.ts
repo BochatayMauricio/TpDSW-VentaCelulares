@@ -76,7 +76,6 @@ export class UserProfileComponent implements OnInit {
           this.toastr.error(`Las contraseñas deben Coincidir`)
         };
       }
-      console.log("llegue")
       this.newPassword = '';
       this.newPassword2 = '';
       this.newEmail = '';
